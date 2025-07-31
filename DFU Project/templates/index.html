@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <title>DFU Classifier</title>
+</head>
+<body>
+    <h2>Upload Image</h2>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="image">
+        <input type="submit">
+    </form>
+
+    {% if results %}
+    <h2>Results</h2>
+    {% for r in results %}
+        <div style="margin-bottom:20px;">
+            <p><strong>Predicted Class:</strong> {{ r.prediction }}</p>
+            <p><strong>Cropped Region:</strong></p>
+            <img src="{{ r.crop }}" width="224">
+            <p><strong>Grad-CAM:</strong></p>
+            <img src="{{ r.gradcam }}" width="224">
+        </div>
+    {% endfor %}
+    {% endif %}
+</body>
+</html>
+
