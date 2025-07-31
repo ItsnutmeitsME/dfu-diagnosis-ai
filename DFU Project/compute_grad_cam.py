@@ -5,7 +5,7 @@ import cv2
 import numpy as np
 from torchvision import models
 
-# 🔁 Helper: GradCAM class
+# GradCAM class
 class GradCAM:
     def __init__(self, model, target_layer):
         self.model = model
@@ -51,10 +51,10 @@ class GradCAM:
         cam /= np.max(cam)
         return cam, class_idx.item()
 
-# 🎯 Your trained model
-# Rebuild the architecture
+
+
 model = models.mobilenet_v2(pretrained=False)
-model.classifier[1] = torch.nn.Linear(model.last_channel, 6)  # Replace with correct number of classes
+model.classifier[1] = torch.nn.Linear(model.last_channel, 6)  
 
 # Load the saved state dict
 state_dict = torch.load("best_mobilenetv2_dfu_5cats.pth")
@@ -64,10 +64,10 @@ model.load_state_dict(state_dict)
 model.eval()
 model.cuda()
 
-# 👀 Use the last conv layer for Grad-CAM
-target_layer = dict([*model.named_modules()])["features.18"]  # For MobileNetV2
+# Use the last conv layer for Grad-CAM
+target_layer = dict([*model.named_modules()])["features.18"]  
 
-# 🧪 Test image
+# Test image
 from torchvision import transforms
 from PIL import Image
 
@@ -79,11 +79,11 @@ transform = transforms.Compose([
 img = Image.open("../../wagner_classification/test/4/208.jpg").convert("RGB")
 input_tensor = transform(img).unsqueeze(0).cuda()
 
-# 🔍 Grad-CAM generation
+#  Grad-CAM generation
 grad_cam = GradCAM(model, target_layer)
 cam, pred_class = grad_cam.generate_cam(input_tensor)
 
-# 📊 Overlay CAM on image
+#  Overlay CAM on image
 img_np = np.array(img)
 heatmap = cv2.applyColorMap(np.uint8(255 * cam), cv2.COLORMAP_JET)
 overlay = cv2.addWeighted(cv2.cvtColor(img_np, cv2.COLOR_RGB2BGR), 0.6, heatmap, 0.4, 0)
