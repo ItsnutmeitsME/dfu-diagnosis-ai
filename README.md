@@ -35,6 +35,10 @@ This project is an end-to-end AI pipeline for real-time detection and classifica
 - **Classification Accuracy**: ~75% on validation set
 - **F1 Scores**: Balanced performance across most classes, especially Grades 2–4.
 - **Explainability**: Grad-CAM heatmaps focused on clinically relevant ulcer regions.
+<img width="451" height="387" alt="image" src="https://github.com/user-attachments/assets/17eee65c-9c44-4336-9319-9184f3f3d84d" />
+<img width="302" height="231" alt="image" src="https://github.com/user-attachments/assets/e1e3942b-2131-4a09-bfd8-940f22771f62" />
+<img width="435" height="245" alt="image" src="https://github.com/user-attachments/assets/8948abea-66aa-4802-95a4-a51d186a9116" />
+<img width="472" height="264" alt="image" src="https://github.com/user-attachments/assets/a5a6ca76-31c3-4d9e-ba01-c59642abc2dc" />
 
 ---
 
